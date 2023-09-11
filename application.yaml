@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Facilgo/facilgo-api.git
     targetRevision: deployment
-    path: /infra/k8s
+    path: /staging
   destination:
     server: https://kubernetes.default.svc
     namespace: facilgo
