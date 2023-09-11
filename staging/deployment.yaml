@@ -55,9 +55,9 @@ metadata:
   name: facilgo-api-srv
 spec:
   selector:
-    app: auth
+    app: facilgo-api
   ports:
-    - name: auth
+    - name: facilgo-api
       protocol: TCP
       port: 8000
       targetPort: 8000
