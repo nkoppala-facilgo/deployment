@@ -15,7 +15,6 @@ spec:
       containers:
         - name: facilgo-api
           image: nkoppalafacilgo/facilgo_api:latest
-          imagePullPolicy: Never
           imagePullSecrets:
             - name: dckr_pat_gUoRMw6To2z0I6ZriDiUHWQbLhY
           env:
