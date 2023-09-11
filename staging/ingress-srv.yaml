@@ -7,9 +7,9 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    # - host: exp.facilgo.com
-    http:
-      paths:
+    - host: exp.facilgo.com
+      http:
+        paths:
         - path: "/"
           pathType: Prefix
           backend:
