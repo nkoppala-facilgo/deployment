@@ -8,9 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Facilgo/facilgo-api.git
-    targetRevision: deployment
-    path: /staging
+    repoURL: https://github.com/nkoppala-facilgo/deployment.git
+    targetRevision: HEAD
+    path: staging
   destination:
     server: https://kubernetes.default.svc
     namespace: facilgo
