@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: facilgo-api-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facilgo-api
+  template:
+    metadata:
+      labels:
+        app: facilgo-api
+    spec:
+      containers:
+        - name: facilgo-api
+          image: nkoppalafacilgo/facilgo_api:latest
+          imagePullPolicy: Never
+          imagePullSecrets:
+            - name: dckr_pat_gUoRMw6To2z0I6ZriDiUHWQbLhY
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: api-srv-config
+                  key: NODE_ENV
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: api-srv-secret
+                  key: DATABASE_PORT
+            - name: DATABASE_POOL_MIN
+              valueFrom:
+                secretKeyRef:
+                  name: api-srv-secret
+                  key: DATABASE_POOL_MIN
+            - name: DATABASE_POOL_MAX
+              valueFrom:
+                secretKeyRef:
+                  name: api-srv-secret
+                  key: DATABASE_POOL_MAX
+            - name: AES_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-srv-secret
+                  key: AES_KEY
+            - name: AES_IV
+              valueFrom:
+                secretKeyRef:
+                  name: api-srv-secret
+                  key: AES_IV
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: facilgo-api-srv
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
