@@ -59,6 +59,6 @@ spec:
     app: facilgo-api
   ports:
     - name: facilgo-api
-      protocol: TCP
+      # protocol: TCP
       port: 8000
       targetPort: 8000
