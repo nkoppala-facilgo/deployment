@@ -54,6 +54,7 @@ kind: Service
 metadata:
   name: facilgo-api-srv
 spec:
+  type: LoadBalancer
   selector:
     app: facilgo-api
   ports:
