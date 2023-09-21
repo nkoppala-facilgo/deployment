@@ -11,6 +11,10 @@ spec:
     repoURL: https://github.com/nkoppala-facilgo/deployment.git
     targetRevision: HEAD
     path: facilgo
+    helm:
+      releaseName: my-app-release
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: facilgo
@@ -20,9 +24,3 @@ spec:
     automated:
       selfHeal: true
       prune: true
-  chart:
-    helm:
-      releaseName: my-app-release
-      values:
-        - values.yaml # The default values file
-        # - dev-values.yaml # Values for the dev environment
