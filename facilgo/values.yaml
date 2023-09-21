@@ -1,0 +1,12 @@
+appName: facilgo-api
+namespace: default
+deployment:
+  name: facilgo-api-depl
+service:
+  name: facilgo-api-srv
+config:
+  name: api-srv-config
+
+image:
+  name: nkoppalafacilgo/facilgo_api
+  tag: latest

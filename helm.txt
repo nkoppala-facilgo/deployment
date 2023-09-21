@@ -1,0 +1,9 @@
+helm create facilgo
+
+helm install facilgo-release facilgo
+
+helm upgrade facilgo-release facilgo --values facilgo/values.yaml
+
+helm ls
+
+kubectl get all
