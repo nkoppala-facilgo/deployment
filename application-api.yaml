@@ -1,23 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: facilgo-api
+  name: ui-application
   namespace: argocd
-  labels:
-    name: facilgo-api
 spec:
   project: default
   source:
     repoURL: https://github.com/nkoppala-facilgo/deployment.git
-    targetRevision: HEAD
+    targetRevision: main
     path: facilgo
     helm:
-      releaseName: facilgo-release
       valueFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: facilgo
+    namespace: facilgo-api
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
