@@ -1,5 +1,5 @@
 appName: facilgo-reno-reno
-namespace: facilgo-reno-dev
+namespace: facilgo-dev
 deployment:
   name: facilgo-reno-depl
 
@@ -16,8 +16,18 @@ image:
   pullPolicy: IfNotPresent
 
 ingress:
-  enabled: false
+  enabled: true
+  path: /ui
 
 secret:
   metadata:
     name: facilgo-reno-secrets
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+  

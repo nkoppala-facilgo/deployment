@@ -16,8 +16,11 @@ image:
   pullPolicy: IfNotPresent
 
 ingress:
-  enabled: false
+  enabled: true
+  path: /api
 
 secret:
   metadata:
     name: facilgo-reno-secrets
+
+  
