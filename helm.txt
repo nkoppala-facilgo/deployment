@@ -7,3 +7,123 @@ helm upgrade facilgo-release facilgo --values facilgo/values.yaml
 helm ls
 
 kubectl get all
+
+TODO
+Twilio(Sendgrid) need to put configuration in Jenkins
+Create One devops email
+
+Helm Charts
+
+
+Helm is widely known as "the package manager for Kubernetes".  
+The original goal of Helm was to provide users with a better way to manage all the Kubernetes YAML files.
+Charts allow you to version your manifest files too, just like we do with Node.js or any other package. This lets you install specific chart versions, which means keeping specific configurations for your infrastructure in the form of code.
+Helm also keeps a release history of all deployed charts, so you can go back to a previous release if something went wrong.
+
+Why Should You Use Helm?
+
+brew install helm
+
+helm version
+
+Find charts:
+ArtifactHub
+CLI: helm search hub redis
+
+Basic Helm CLI commands
+
+helm create facilgo
+
+helm install facilgo facilgo(directory name);
+
+helm list -a
+
+kubectl get service
+
+pod debug:
+kubectl describe pods -n facilgo-dev
+
+check on chrome: localhost:30133
+
+Debugging:
+
+All Commands:
+
+Create Helm chart: 
+helm create helloworld
+
+Install Helm chart:
+helm install myhelloworldrelease helloworld
+
+Upgrade the chart:
+helm upgrade myhelloworldrelease helloworld
+
+Rollback the helm chart:
+helm rollback myhelloworldrelease helloworld
+
+helm rollback myhelloworldrelease 1 (revision number)
+
+Validate your helm chart before install:
+helm install myhelloworldrelease --debug --dry-run helloworld
+
+
+Renders the chart templates locally:
+helm template helloworld
+
+Find ant errors or misconfiguration:
+helm lint helloworld
+
+Remove the chart:
+helm uninstall myhelloworldrelease
+
+helm list -a
+
+
+Helmfile:
+What is Helmfile and why we need it?
+
+helmfile install
+https://jhooq.com/helmfile-manage-helmchart/
+
+Helm Repo:
+
+Helm Hooks & Test:
+
+pre-install.yaml
+apiVersion: batch/v1  
+kind: Job  
+metadata:  
+  name: "{{ include "helloworld.fullname" .}}-pre-install-job-hook"  
+  labels: 
+    {{- include "helloworld.labels" . | nindent 4 }}
+  annotations:  
+    # This is what defines this resource as a hook. Without this line, the  
+    # job is considered part of the release.  
+    "helm.sh/hook": pre-install  
+    "helm.sh/hook-weight": "-5"  
+    "helm.sh/hook-delete-policy": hook-succeeded  
+spec:  
+  template:
+    spec:
+      containers:  
+      - name: pre-install-job  
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sleep","{{default "10" .Values.sleepyTime}}"]
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 0
+  backoffLimit: 3
+  completions: 1
+  parallelism: 1
+
+watch -n 1 kubectl get pod
+
+helm install myhelloworldrelease helloworld
+
+kubectl get job
+
+kubectl delete job myhelloworldrelease-pre-install-job-hook
+
+
+helm test:
+helm test myhelloworldrelease

@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: naveenkoppala.in
+    - host: naveenkoppala.local
       http:
         paths:
           - path: /
@@ -16,4 +16,4 @@ spec:
               service:
                 name: facilgo-api-srv
                 port:
-                  number: 8000
+                  number: 80
