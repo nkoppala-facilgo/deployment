@@ -5,7 +5,7 @@ deployment:
 
 service:
   name: facilgo-api-srv
-  type: ClusterIP
+  type: NodePort
   port: 8000
 config:
   name: facilgo-srv-config
@@ -17,3 +17,7 @@ image:
 
 ingress:
   enabled: false
+
+secret:
+  metadata:
+    name: facilgo-reno-secrets

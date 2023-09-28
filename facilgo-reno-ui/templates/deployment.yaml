@@ -29,31 +29,6 @@ spec:
                 configMapKeyRef:
                   name: {{ .Values.config.name }}
                   key: NODE_ENV
-            - name: DATABASE_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: facilgo-srv-secrets
-                  key: DATABASE_PORT
-            - name: DATABASE_POOL_MIN
-              valueFrom:
-                secretKeyRef:
-                  name: facilgo-srv-secrets
-                  key: DATABASE_POOL_MIN
-            - name: DATABASE_POOL_MAX
-              valueFrom:
-                secretKeyRef:
-                  name: facilgo-srv-secrets
-                  key: DATABASE_POOL_MAX
-            - name: AES_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: facilgo-srv-secrets
-                  key: AES_KEY
-            - name: AES_IV
-              valueFrom:
-                secretKeyRef:
-                  name: facilgo-srv-secrets
-                  key: AES_IV
           resources:
             requests:
               cpu: 125m
@@ -62,17 +37,17 @@ spec:
               cpu: 250m
               memory: 126Mi
           volumeMounts:
-            - name: facilgo-secret-volume
+            - name: facilgo-reno-secret-volume
               mountPath: /secrets/
-            - name: facilgo-config-volume
+            - name: facilgo-reno-config-volume
               mountPath: /configs/
       volumes:
-        - name: facilgo-config-volume
+        - name: facilgo-reno-config-volume
           configMap:
-            name: facilgo-srv-config #name of our configmap object
-        - name: facilgo-secret-volume
+            name: facilgo-reno-srv-config #name of our configmap object
+        - name: facilgo-reno-secret-volume
           secret:
-            secretName: facilgo-srv-secrets
+            secretName: facilgo-reno-srv-secrets
 ---
 apiVersion: v1
 kind: Service

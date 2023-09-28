@@ -1,0 +1,23 @@
+appName: facilgo-reno-reno
+namespace: facilgo-reno-dev
+deployment:
+  name: facilgo-reno-depl
+
+service:
+  name: facilgo-reno-srv
+  type: NodePort
+  port: 3005
+config:
+  name: facilgo-reno-srv-config
+
+image:
+  name: registry.digitalocean.com/facilgo/facilgo-reno
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: false
+
+secret:
+  metadata:
+    name: facilgo-reno-secrets
