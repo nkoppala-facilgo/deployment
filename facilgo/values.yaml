@@ -1,5 +1,5 @@
 appName: facilgo-api
-namespace: facilgo-dev
+namespace: facilgo-api
 deployment:
   name: facilgo-api-depl
 
