@@ -1,0 +1,26 @@
+appName: facilgo-api
+namespace: facilgo-api
+deployment:
+  name: facilgo-api-depl
+
+service:
+  name: facilgo-api-srv
+  type: NodePort
+  port: 8000
+config:
+  name: facilgo-srv-config
+
+image:
+  name: registry.digitalocean.com/facilgo/facilgo-api
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+ingress:
+  enabled: true
+  path: /api
+
+secret:
+  metadata:
+    name: facilgo-reno-secrets
+
+  
