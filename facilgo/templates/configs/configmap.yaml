@@ -4,4 +4,4 @@ metadata:
   name: {{ .Values.config.name }}
   namespace: {{ .Values.namespace }}
 data:
-  NODE_ENV: development
+  NODE_ENV: {{ .Values.environment }}

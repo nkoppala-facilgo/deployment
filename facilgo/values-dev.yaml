@@ -1,5 +1,6 @@
 appName: facilgo-api
-namespace: facilgo-api
+namespace: facilgo-api-dev
+environment: development
 deployment:
   name: facilgo-api-depl
 
@@ -22,5 +23,6 @@ ingress:
 secret:
   metadata:
     name: facilgo-reno-secrets
-
-  
+volume:
+  config_name: facilgo-config-volume
+  secret_name: facilgo-secret-volume

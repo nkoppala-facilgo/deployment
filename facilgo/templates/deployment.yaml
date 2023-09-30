@@ -32,27 +32,27 @@ spec:
             - name: DATABASE_PORT
               valueFrom:
                 secretKeyRef:
-                  name: facilgo-srv-secrets
+                  name: "{{ .Values.service.name }}-secrets"
                   key: DATABASE_PORT
             - name: DATABASE_POOL_MIN
               valueFrom:
                 secretKeyRef:
-                  name: facilgo-srv-secrets
+                  name: "{{ .Values.service.name }}-secrets"
                   key: DATABASE_POOL_MIN
             - name: DATABASE_POOL_MAX
               valueFrom:
                 secretKeyRef:
-                  name: facilgo-srv-secrets
+                  name: "{{ .Values.service.name }}-secrets"
                   key: DATABASE_POOL_MAX
             - name: AES_KEY
               valueFrom:
                 secretKeyRef:
-                  name: facilgo-srv-secrets
+                  name: "{{ .Values.service.name }}-secrets"
                   key: AES_KEY
             - name: AES_IV
               valueFrom:
                 secretKeyRef:
-                  name: facilgo-srv-secrets
+                  name: "{{ .Values.service.name }}-secrets"
                   key: AES_IV
           resources:
             requests:
@@ -62,17 +62,17 @@ spec:
               cpu: 250m
               memory: 126Mi
           volumeMounts:
-            - name: facilgo-secret-volume
+            - name: {{ .Values.volume.secret_name }}
               mountPath: /secrets/
-            - name: facilgo-config-volume
+            - name: {{ .Values.volume.config_name }}
               mountPath: /configs/
       volumes:
-        - name: facilgo-config-volume
+        - name: {{ .Values.volume.config_name }}
           configMap:
             name: facilgo-srv-config #name of our configmap object
-        - name: facilgo-secret-volume
+        - name: {{ .Values.volume.secret_name }}
           secret:
-            secretName: facilgo-srv-secrets
+            secretName: "{{ .Values.service.name }}-secrets"
 ---
 apiVersion: v1
 kind: Service
