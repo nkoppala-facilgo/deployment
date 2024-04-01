@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}-depl
+  name: "{{ .Values.appName }}-depl"
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
@@ -29,40 +29,8 @@ spec:
                 configMapKeyRef:
                   name: {{ .Values.config.name }}
                   key: NODE_ENV
-            - name: DATABASE_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.service.name }}-secrets"
-                  key: DATABASE_PORT
-            - name: DATABASE_POOL_MIN
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.service.name }}-secrets"
-                  key: DATABASE_POOL_MIN
-            - name: DATABASE_POOL_MAX
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.service.name }}-secrets"
-                  key: DATABASE_POOL_MAX
-            - name: AES_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.service.name }}-secrets"
-                  key: AES_KEY
-            - name: AES_IV
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.service.name }}-secrets"
-                  key: AES_IV
-          resources:
-            requests:
-              cpu: 125m
-              memory: 100Mi
-            limits:
-              cpu: 250m
-              memory: 126Mi
           volumeMounts:
-            - name: {{ .Values.volume.secret_name }}
+            - name: facilgo-secret-volume
               mountPath: /secrets/
             - name: {{ .Values.volume.config_name }}
               mountPath: /configs/
@@ -70,7 +38,7 @@ spec:
         - name: {{ .Values.volume.config_name }}
           configMap:
             name: facilgo-srv-config #name of our configmap object
-        - name: {{ .Values.volume.secret_name }}
+        - name: facilgo-secret-volume
           secret:
             secretName: "{{ .Values.service.name }}-secrets"
 ---
@@ -89,4 +57,4 @@ spec:
     - name: {{ .Values.appName }}
       protocol: TCP
       port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}

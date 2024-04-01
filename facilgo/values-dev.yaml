@@ -7,12 +7,13 @@ deployment:
 service:
   name: facilgo-api-srv
   type: NodePort
-  port: 8000
+  port: 80
+  targetPort: 8000
 config:
   name: facilgo-srv-config
 
 image:
-  name: registry.digitalocean.com/facilgo/facilgo-api
+  name: registry.digitalocean.com/facilgo-test/facilgo-api-new
   tag: "latest"
   pullPolicy: IfNotPresent
 
@@ -22,7 +23,7 @@ ingress:
 
 secret:
   metadata:
-    name: facilgo-reno-secrets
+    name: facilgo-api-secrets
 volume:
   config_name: facilgo-config-volume
   secret_name: facilgo-secret-volume

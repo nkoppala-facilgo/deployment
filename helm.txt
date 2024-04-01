@@ -127,3 +127,9 @@ kubectl delete job myhelloworldrelease-pre-install-job-hook
 
 helm test:
 helm test myhelloworldrelease
+
+
+
+Jenkins
+password /Users/naveenkoppala/.jenkins/secrets
+af3ac2f7d4b24909a69c6cc486b00123

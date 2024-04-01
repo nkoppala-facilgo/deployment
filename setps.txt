@@ -1,0 +1,10 @@
+Need to create repo for infrastructure
+
+In ubuntu machine need to install argo
+
+Create one cluster
+
+Cluster setup on ubuntu machine
+
+In ubuntu machine create argo cd application.yaml file
+
