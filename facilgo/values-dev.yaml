@@ -13,7 +13,7 @@ config:
   name: facilgo-srv-config
 
 image:
-  name: registry.digitalocean.com/facilgo-test/facilgo-api-new
+  name: registry.digitalocean.com/facilgo-test/api-prediction
   tag: "latest"
   pullPolicy: IfNotPresent
 
