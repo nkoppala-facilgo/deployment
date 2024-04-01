@@ -6,7 +6,7 @@ deployment:
 
 service:
   name: facilgo-api-srv
-  type: NodePort
+  type: LoadBalancer
   port: 80
   targetPort: 8000
 config:
